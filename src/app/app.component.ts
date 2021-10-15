@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         palavraSemVogais = palavraSemVogais.concat(palavra.charAt(i));
       }
     }
-    return palavraSemVogais === consoantes;
+    return palavraSemVogais.toUpperCase() === consoantes.toUpperCase();
   }
 
   onKeyUp(): void{
