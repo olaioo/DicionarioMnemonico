@@ -1,23 +1,26 @@
-<div fxLayout="row" fxLayoutAlign="center start">
+<div fxLayout="row" fxLayoutAlign="center start" *ngIf="palavrasList">
   <mat-card>
     <mat-card-title>Dicionário Mnemônico</mat-card-title>
-    <mat-card-subtitle>Busque palavras consoantes em um dicionário português brasil, informando as consoantes no campo abaixo.</mat-card-subtitle>
+    <mat-card-subtitle>Busque palavras consoantes em um dicionário português brasileiro, informando as consoantes no campo abaixo.</mat-card-subtitle>
     <mat-divider></mat-divider>
     <div fxLayout="row" fxLayoutAlign="center start">
       <mat-form-field fxFlex="100">
         <mat-label>Consoantes</mat-label>
-        <input matInput placeholder="Digite as consoantes que deseja (EX: ttr)" [formControl]="consoantes">
+        <input matInput placeholder="Digite as consoantes que deseja (EX: ttr)" [formControl]="consoantes" (keyup)="onKeyUp()">
       </mat-form-field>
     </div>
   </mat-card>
 </div>
-<div fxLayout="row" fxLayoutAlign="center start" *ngIf="palavrasList | async as palavras">
+<div fxLayout="row" fxLayoutAlign="center start" *ngIf="palavrasFiltered?.length || carregando">
   <mat-card>
     <mat-card-title>Palavras encontradas</mat-card-title>
     <mat-divider></mat-divider>
-      <cdk-virtual-scroll-viewport class="viewport" itemSize="20">
+    <div fxLayout="row" fxLayoutAlign="center start" *ngIf="carregando" >
+      <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner>
+    </div>
+      <cdk-virtual-scroll-viewport class="viewport" itemSize="20" *ngIf="!carregando">
         <mat-list role="list">
-          <mat-list-item role="listitem" *cdkVirtualFor="let palavra of palavras">{{palavra}}</mat-list-item>
+          <mat-list-item role="listitem" *cdkVirtualFor="let palavra of palavrasFiltered">{{palavra}}</mat-list-item>
         </mat-list>
       </cdk-virtual-scroll-viewport>
   </mat-card>
