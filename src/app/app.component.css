@@ -1,0 +1,15 @@
+.mat-card{
+  margin-top: 20px;
+  width: 500px;
+}
+
+.mat-form-field{
+  margin-top: 20px;
+}
+
+.viewport {
+  height: 600px;
+  width: auto;
+  margin-top: 20px;
+}
+

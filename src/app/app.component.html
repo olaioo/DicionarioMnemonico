@@ -1,0 +1,25 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <mat-card>
+    <mat-card-title>Dicionário Mnemônico</mat-card-title>
+    <mat-card-subtitle>Busque palavras consoantes em um dicionário português brasil, informando as consoantes no campo abaixo.</mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <mat-form-field fxFlex="100">
+        <mat-label>Consoantes</mat-label>
+        <input matInput placeholder="Digite as consoantes que deseja (EX: ttr)" [formControl]="consoantes">
+      </mat-form-field>
+    </div>
+  </mat-card>
+</div>
+<div fxLayout="row" fxLayoutAlign="center start" *ngIf="palavrasList | async as palavras">
+  <mat-card>
+    <mat-card-title>Palavras encontradas</mat-card-title>
+    <mat-divider></mat-divider>
+      <cdk-virtual-scroll-viewport class="viewport" itemSize="20">
+        <mat-list role="list">
+          <mat-list-item role="listitem" *cdkVirtualFor="let palavra of palavras">{{palavra}}</mat-list-item>
+        </mat-list>
+      </cdk-virtual-scroll-viewport>
+  </mat-card>
+</div>
+
