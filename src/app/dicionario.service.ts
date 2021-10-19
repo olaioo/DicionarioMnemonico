@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {filter, first, map, take} from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 
 @Injectable({
@@ -18,7 +18,7 @@ export class DicionarioService {
   carregarListaPalavras(): Observable<string[]> {
     let urlToTxt = 'assets/list-pt-br.txt';
 
-    return this.http.get(urlToTxt, {responseType: "text", headers: new HttpHeaders().set("Cache-Control", "no-cache")})
+    return this.http.get(urlToTxt, { responseType: "text", headers: new HttpHeaders().set("Cache-Control", "no-cache") })
       .pipe(
         map(s => s.split("\n"))
       );

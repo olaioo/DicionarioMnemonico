@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {debounceTime, tap} from "rxjs/operators";
-import {FormControl} from "@angular/forms";
-import {DicionarioService} from "./dicionario.service";
-import {Observable, Subject} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { debounceTime, tap } from "rxjs/operators";
+import { FormControl } from "@angular/forms";
+import { DicionarioService } from "./dicionario.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -35,12 +34,12 @@ export class AppComponent implements OnInit {
       .subscribe(term => {
         this.filtrarPalavras(this.palavrasList, term);
         this.carregando = false;
-    });
+      });
   }
 
   filtrarPalavras(palavras: string[], consoantes: string): void {
-    this.palavrasFiltered = consoantes.length > 0 ? palavras.filter(s => this.checarPalavra(s, consoantes)): [];
-    if(this.palavrasFiltered.length <= 0) {
+    this.palavrasFiltered = consoantes.length > 0 ? palavras.filter(s => this.checarPalavra(s, consoantes)) : [];
+    if (this.palavrasFiltered.length <= 0) {
       console.log("Dentro");
       this.mostrarMensagem("Nenhuma palavra foi encontrada!");
     }
@@ -48,20 +47,20 @@ export class AppComponent implements OnInit {
 
   checarPalavra(palavra: string, consoantes: string): boolean {
     let palavraSemVogais = "";
-    for(let i=0; i<palavra.length; i++){
-      if(!this.vogais.includes(palavra.charAt(i))){
+    for (let i = 0; i < palavra.length; i++) {
+      if (!this.vogais.includes(palavra.charAt(i))) {
         palavraSemVogais = palavraSemVogais.concat(palavra.charAt(i));
       }
     }
     return palavraSemVogais.toUpperCase() === consoantes.toUpperCase();
   }
 
-  onKeyUp(): void{
+  onKeyUp(): void {
     console.log("keydown");
     this.carregando = true;
   }
 
-  mostrarMensagem(mensagem: string): void{
+  mostrarMensagem(mensagem: string): void {
     this.snackbar.open(mensagem, 'Close', {
       duration: 3000
     });
