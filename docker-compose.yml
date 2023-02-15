@@ -1,0 +1,14 @@
+services:
+  dicionariomnemonico:
+    image: 'dicionariomnemonico:latest'
+    container_name: dicionariomnemonico
+    restart: unless-stopped
+    ports: 
+      - '8080:8080'
+    networks:
+      - proxy_manager
+
+
+networks:
+  proxy_manager:
+    name: proxy_manager

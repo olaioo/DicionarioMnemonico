@@ -6,6 +6,8 @@ dist/
 node_modules/
 flask/
 
+package.json.lock
+
 #Enviroment vars
 .env
 
